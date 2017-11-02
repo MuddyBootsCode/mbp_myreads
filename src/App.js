@@ -3,6 +3,7 @@ import './App.css';
 import { Route } from 'react-router-dom'
 import StoreFront from './components/StoreFront'
 import * as BooksAPI from './BooksAPI'
+import BookSearch from "./components/BookSearch";
 
 class App extends Component {
 
@@ -20,9 +21,13 @@ class App extends Component {
 
   render() {
     return (
+
       <div className="App">
         <Route exact path="/" render={() => (
             <StoreFront books={this.state.books}/>
+        )}/>
+        <Route path="/search" render={() => (
+            <BookSearch/>
         )}/>
       </div>
     );
