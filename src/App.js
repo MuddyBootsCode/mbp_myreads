@@ -10,7 +10,6 @@ class App extends Component {
     state = {
         books: []
     }
-
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState({ books })

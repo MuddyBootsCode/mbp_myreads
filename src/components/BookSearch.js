@@ -21,15 +21,16 @@ class BookSearch extends Component {
 
     bookSearch = (query) => {
 
-        if(!query) {
-            this.clearQuery(query)
-        } else {
-            this.updateQuery(query)
-        }
-
-        BooksAPI.search(query, 20).then(books => {
-            this.setState({ books })
-        })
+        this.updateQuery(query)
+        BooksAPI.search(query).then(
+            books => {
+                if (!books || books.hasOwnProperty('error')){
+                    this.setState({ books: []})
+                } else {
+                    this.setState({ books })
+                }
+            }
+        )
     }
 
 
@@ -52,7 +53,7 @@ class BookSearch extends Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {this.state.books.map((book) => (
+                        {this.state.books && this.state.books.map((book) => (
                             <Book key={book.id} book={book}/>
                         ))}
                     </ol>
