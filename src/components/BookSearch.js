@@ -2,9 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from '../BooksAPI'
 import Book from "./Book";
+import PropTypes from 'prop-types'
 
 
 class BookSearch extends Component {
+
+    static propTypes = {
+        books: PropTypes.array.isRequired,
+        shelfChanger: PropTypes.func.isRequired
+    }
 
     state = {
         query: '',
@@ -37,6 +43,7 @@ class BookSearch extends Component {
     render() {
 
         const { query } = this.state
+        const { shelfChanger } = this.props
 
         return (
             <div className="search-books">
@@ -54,7 +61,7 @@ class BookSearch extends Component {
                 <div className="search-books-results">
                     <ol className="books-grid">
                         {this.state.books && this.state.books.map((book) => (
-                            <Book key={book.id} book={book}/>
+                            <Book key={book.id} book={book} shelfChanger={shelfChanger}/>
                         ))}
                     </ol>
                 </div>

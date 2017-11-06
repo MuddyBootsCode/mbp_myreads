@@ -16,6 +16,15 @@ class App extends Component {
         })
     }
 
+    shelfChanger = (book, newShelf) => {
+        BooksAPI.update(book, newShelf).then(() => {
+            book.shelf = newShelf;
+            this.setState(state => ({
+                books: state.books.filter(b => b.id !== book.id).concat([ book ])
+            }));
+        });
+    };
+
 
 
   render() {
@@ -23,10 +32,10 @@ class App extends Component {
 
       <div className="App">
         <Route exact path="/" render={() => (
-            <StoreFront books={this.state.books}/>
+            <StoreFront books={this.state.books} shelfChanger={this.shelfChanger}/>
         )}/>
-        <Route path="/search" render={() => (
-            <BookSearch/>
+        <Route path="/search" render={({ history }) => (
+            <BookSearch shelfChanger={this.shelfChanger}/>
         )}/>
       </div>
     );
