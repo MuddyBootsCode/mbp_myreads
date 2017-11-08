@@ -43,7 +43,7 @@ class BookSearch extends Component {
     render() {
 
         const { query } = this.state
-        const { shelfChanger } = this.props
+        const { shelfChanger} = this.props
 
         return (
             <div className="search-books">

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import Book from './Book'
 import PropTypes from 'prop-types'
-import * as BooksAPI from '../BooksAPI'
 
 class BookShelf extends Component {
 
@@ -11,14 +10,17 @@ class BookShelf extends Component {
     }
 
     render() {
+
+        const { books, shelfChanger, shelf } = this.props
+
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title">{this.props.shelf}</h2>
+                <h2 className="bookshelf-title">{shelf}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {this.props.books.map((book) => {
+                        {books.map((book) => {
                             return (
-                                <Book key={book.id} book={book} shelfChanger={this.shelfChanger}/>
+                                <Book key={book.id} book={book} shelfChanger={shelfChanger}/>
                             )
                         })}
                     </ol>
