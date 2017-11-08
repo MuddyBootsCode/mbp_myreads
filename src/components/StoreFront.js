@@ -31,7 +31,7 @@ class StoreFront extends Component {
 
         )
 
-}
+    }
 }
 
 export default StoreFront
