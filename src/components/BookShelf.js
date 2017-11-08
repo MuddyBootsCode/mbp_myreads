@@ -1,7 +1,15 @@
 import React, { Component } from 'react'
 import Book from './Book'
+import PropTypes from 'prop-types'
+import * as BooksAPI from '../BooksAPI'
 
 class BookShelf extends Component {
+
+    static propTypes = {
+        book: PropTypes.object.isRequired,
+        shelfChanger: PropTypes.func.isRequired
+    }
+
     render() {
         return (
             <div className="bookshelf">
@@ -10,7 +18,7 @@ class BookShelf extends Component {
                     <ol className="books-grid">
                         {this.props.books.map((book) => {
                             return (
-                                <Book key={book.id} book={book}/>
+                                <Book key={book.id} book={book} shelfChanger={this.shelfChanger}/>
                             )
                         })}
                     </ol>
