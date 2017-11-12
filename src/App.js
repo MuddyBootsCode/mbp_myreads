@@ -29,9 +29,7 @@ class App extends Component {
     isBookOnShelf = (books, searchResults) => {
         searchResults.forEach((searchResult) => {
             books.forEach((book) => {
-                if (book.id === searchResult.id) {
-                    searchResult.shelf = book.shelf;
-                }
+                book.id === searchResult.id ? searchResult.shelf = book.shelf : searchResult.shelf = 'none'
             })
         })
         return searchResults;
