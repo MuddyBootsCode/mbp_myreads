@@ -10,6 +10,7 @@ class App extends Component {
     state = {
         books: []
     }
+
     componentDidMount() {
         BooksAPI.getAll().then((books) => {
             this.setState({ books })
@@ -25,9 +26,21 @@ class App extends Component {
         });
     };
 
+    isBookOnShelf = (books, searchResults) => {
+        searchResults.forEach((searchResult) => {
+            books.forEach((book) => {
+                if (book.id === searchResult.id) {
+                    searchResult.shelf = book.shelf;
+                }
+            })
+        })
+        return searchResults;
+    }
 
 
-  render() {
+
+
+    render() {
     return (
 
       <div className="App">
@@ -35,7 +48,7 @@ class App extends Component {
             <StoreFront books={this.state.books} shelfChanger={this.shelfChanger}/>
         )}/>
         <Route path="/search" render={({ history }) => (
-            <BookSearch shelfChanger={this.shelfChanger}/>
+            <BookSearch shelfChanger={this.shelfChanger} isBookOnShelf={this.isBookOnShelf} books={this.state.books}/>
         )}/>
       </div>
     );

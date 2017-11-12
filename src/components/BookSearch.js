@@ -9,31 +9,29 @@ class BookSearch extends Component {
 
     static propTypes = {
         books: PropTypes.array.isRequired,
-        shelfChanger: PropTypes.func.isRequired
+        shelfChanger: PropTypes.func.isRequired,
+        isBookOnShelf: PropTypes.func.isRequired
     }
 
     state = {
         query: '',
-        books: []
+        searchResults: []
     }
 
     updateQuery = query => {
         this.setState({query: query.trim()})
     }
 
-    clearQuery = query => {
-        this.setState({query: ''})
-    }
-
     bookSearch = (query) => {
 
         this.updateQuery(query)
         BooksAPI.search(query).then(
-            books => {
-                if (!books || books.hasOwnProperty('error')){
-                    this.setState({ books: []})
+            searchResults => {
+                if (!searchResults || searchResults.hasOwnProperty('error')){
+                    this.setState({ searchResults: []})
                 } else {
-                    this.setState({ books })
+
+                    this.setState({ searchResults })
                 }
             }
         )
@@ -42,7 +40,7 @@ class BookSearch extends Component {
 
     render() {
 
-        const { query } = this.state
+        const { query, searchResults } = this.state
         const { shelfChanger} = this.props
 
         return (
@@ -60,7 +58,7 @@ class BookSearch extends Component {
                 </div>
                 <div className="search-books-results">
                     <ol className="books-grid">
-                        {this.state.books && this.state.books.map((book) => (
+                        {searchResults && searchResults.map((book) => (
                             <Book key={book.id} book={book} shelfChanger={shelfChanger}/>
                         ))}
                     </ol>
