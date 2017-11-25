@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-function Book (props) {
+export default function Book (props) {
     const { book } = props
     const bookCover = book.imageLinks && book.imageLinks.thumbnail ? book.imageLinks.thumbnail : "No Cover"
     return (
@@ -27,4 +27,3 @@ function Book (props) {
     )
 }
 
-export default Book

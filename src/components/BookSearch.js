@@ -7,7 +7,7 @@ import debounce from 'lodash.debounce'
 
 
 
-class BookSearch extends Component {
+export default class BookSearch extends Component {
 
     static propTypes = {
         books: PropTypes.array.isRequired,
@@ -70,5 +70,3 @@ class BookSearch extends Component {
     }
 
 }
-
-export default BookSearch

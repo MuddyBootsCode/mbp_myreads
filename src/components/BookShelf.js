@@ -1,7 +1,7 @@
 import React from 'react'
 import Book from './Book'
 
-function BookShelf (props) {
+export default function BookShelf (props) {
 
         const { books, shelfChanger, shelf } = props
 
@@ -21,4 +21,3 @@ function BookShelf (props) {
         )
     }
 
-export default BookShelf

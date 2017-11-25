@@ -5,7 +5,7 @@ import StoreFront from './components/StoreFront'
 import * as BooksAPI from './BooksAPI'
 import BookSearch from "./components/BookSearch";
 
-class App extends Component {
+export default class App extends Component {
 
     state = {
         books: []
@@ -53,4 +53,4 @@ class App extends Component {
   }
 }
 
-export default App;
+

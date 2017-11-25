@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import BookShelf from './BookShelf'
 import { Link } from 'react-router-dom'
 
-class StoreFront extends Component {
+export default class StoreFront extends Component {
     static propTypes = {
         books: PropTypes.array.isRequired,
         shelfChanger: PropTypes.func.isRequired
@@ -34,4 +34,3 @@ class StoreFront extends Component {
     }
 }
 
-export default StoreFront
